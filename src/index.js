@@ -69,6 +69,7 @@ document.getElementById('fontAdj').addEventListener('keyup', (event) => {
 
     event.target.value = null
 
+    // is this is font sizing an out of box feature or do I need a blot?
     quill.format('font-adjust', val)
   }
 })
