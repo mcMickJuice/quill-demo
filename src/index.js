@@ -40,13 +40,8 @@ const quill = new Quill('#editor', {
 document.getElementById('bullseye').addEventListener('click', () => {
   let range = quill.getSelection(true)
   const bullseyeType = 'normal' // could be big or normal
-  quill.insertEmbed(
-    range.index + 1,
-    'bullseye',
-    bullseyeType,
-    Quill.sources.USER
-  )
-  setTimeout(() => quill.setSelection(range.index + 1), 0)
+  quill.insertEmbed(range.index, 'bullseye', bullseyeType, Quill.sources.USER)
+  quill.setSelection(range.index + 1)
 })
 
 /* 

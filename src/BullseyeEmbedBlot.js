@@ -8,6 +8,7 @@ const targetLogo = '◎'
 class BullseyeEmbedBlot extends Embed {
   // Creates corresponding DOM node
   static create(value) {
+    // value indicates what kind of bullseye we want
     console.log('value', value)
     const node = super.create()
 
@@ -19,7 +20,8 @@ class BullseyeEmbedBlot extends Embed {
     return node
   }
 
-  static buildSpan(value, name) {}
+  // TODO: style bullseye appropriately
+  // handle big vs normal
 }
 
 BullseyeEmbedBlot.blotName = 'bullseye'
