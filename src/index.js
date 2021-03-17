@@ -10,7 +10,8 @@ document.getElementById('app').innerHTML = `
   info about Parcel  ¬
   <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>.
 </div>
-<div id="bullseye">◎</div>
+<button id="normal-bullseye">Normal ◎</button>
+<button id="large-bullseye">Large ◎</button>
 <div id="editor"></div>
 `
 
@@ -37,10 +38,15 @@ const quill = new Quill('#editor', {
   }
 })
 
-document.getElementById('bullseye').addEventListener('click', () => {
+document.getElementById('normal-bullseye').addEventListener('click', () => {
   let range = quill.getSelection(true)
-  const bullseyeType = 'normal' // could be big or normal
-  quill.insertEmbed(range.index, 'bullseye', bullseyeType, Quill.sources.USER)
+  quill.insertEmbed(range.index, 'bullseye', 'normal', Quill.sources.USER)
+  quill.setSelection(range.index + 1)
+})
+
+document.getElementById('large-bullseye').addEventListener('click', () => {
+  let range = quill.getSelection(true)
+  quill.insertEmbed(range.index, 'bullseye', 'large', Quill.sources.USER)
   quill.setSelection(range.index + 1)
 })
 
