@@ -2,6 +2,7 @@ import './styles.css'
 import 'quill/dist/quill.snow.css'
 import Quill from 'quill'
 import BullseyeEmbedBlot from './BullseyeEmbedBlot'
+import FontAdjust from './FontAdjust'
 
 document.getElementById('app').innerHTML = `
 <h1>Hello Vanilla!</h1>
@@ -12,6 +13,7 @@ document.getElementById('app').innerHTML = `
 </div>
 <button id="normal-bullseye">Normal ◎</button>
 <button id="large-bullseye">Large ◎</button>
+<input id="fontAdj" type="number" />
 <div id="editor"></div>
 `
 
@@ -30,6 +32,7 @@ const toolbarOptions = [
  */
 
 Quill.register(BullseyeEmbedBlot)
+Quill.register(FontAdjust)
 
 const quill = new Quill('#editor', {
   theme: 'snow',
@@ -49,6 +52,22 @@ document.getElementById('large-bullseye').addEventListener('click', () => {
   quill.insertEmbed(range.index, 'bullseye', 'large', Quill.sources.USER)
   quill.setSelection(range.index + 1)
 })
+
+document.getElementById('fontAdj').addEventListener('keyup', (event) => {
+  if (event.keyCode === 13) {
+    const val = Number(event.target.value)
+
+    console.log(val)
+
+    event.target.value = null
+    const range = quill.getSelection(true)
+
+    console.log(range)
+    quill.format('font-adjust', val)
+  }
+})
+
+// document.getElementById('editor').addEventListener('keyup', )
 
 /* 
 control what shows in toolbar
