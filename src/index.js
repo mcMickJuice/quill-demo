@@ -11,9 +11,19 @@ document.getElementById('app').innerHTML = `
   info about Parcel  ¬
   <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>.
 </div>
+<div>
 <button id="normal-bullseye">Normal ◎</button>
 <button id="large-bullseye">Large ◎</button>
-<input id="fontAdj" type="number" />
+</div>
+<div>
+<label for="fontAdj">Font Adjustment (%)</label>
+<input  id="fontAdj" type="number" />
+</div>
+<div>
+<label for="color-picker">Pick a Color</label>
+<input type="color" id="color-picker" />
+</div>
+
 <div id="editor"></div>
 `
 
@@ -57,14 +67,16 @@ document.getElementById('fontAdj').addEventListener('keyup', (event) => {
   if (event.keyCode === 13) {
     const val = Number(event.target.value)
 
-    console.log(val)
-
     event.target.value = null
-    const range = quill.getSelection(true)
 
-    console.log(range)
     quill.format('font-adjust', val)
   }
+})
+
+document.getElementById('color-picker').addEventListener('change', (evt) => {
+  const value = evt.target.value
+
+  quill.format('color', value)
 })
 
 // document.getElementById('editor').addEventListener('keyup', )

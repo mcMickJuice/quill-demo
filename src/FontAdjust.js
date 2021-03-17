@@ -4,7 +4,6 @@ const Inline = Quill.import('blots/inline')
 
 class FontAdjust extends Inline {
   static create(value) {
-    console.log('create being called')
     const node = super.create()
 
     node.setAttribute('style', `font-size:${value}%`)
@@ -14,10 +13,8 @@ class FontAdjust extends Inline {
   }
 
   static formats(node) {
-    console.log('FORMATS CALLED', node)
     const attr = node.getAttribute('data-fontAdjSize')
 
-    console.log(attr)
     return attr
   }
 }
